@@ -8,7 +8,7 @@ const params = [
   {
     "sheets": [{
       "name": "Sheet1",
-      "headers": ["Column1", "Column2", "Column3"],
+      "headers": [{"value":"Column1"}, {"value": "Column2"}, {"value":"Column3", "blank": true}],
       "data" : [
         ["A", "B", "C"],
         {"Column1": "A", "Column2": {"value": "B", "style": "rightAlign"}, "Column3": "C"},
