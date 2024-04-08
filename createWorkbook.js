@@ -104,7 +104,7 @@ const createWorkbook = async (payload) => {
     });
   });
 
-  const base64 = (await workbook.writeToBuffer()).toString("base64");
+  const base64 = (await workbook.writeToBuffer()).toString("base64").replaceAll("\n", "");
 
   return base64;
 
