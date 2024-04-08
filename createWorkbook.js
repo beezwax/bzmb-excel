@@ -22,17 +22,21 @@ const createWorkbook = async (payload) => {
         // Handle object
         let value;
         let style;
+        let blank;
         if (typeof header === "object") {
           value = header.value;
           style = header.style;
+          blank = header.blank;
         } else {
           value = header;
         }
         const type = typeof value;
-        if (styleMap[style] !== undefined) {
-          worksheet.cell(rowNumber, index + 1)[type](value).style(styleMap[style]);
-        } else {
-          worksheet.cell(rowNumber, index + 1)[type](value);
+        if (!blank) {
+          if (styleMap[style] !== undefined) {
+            worksheet.cell(rowNumber, index + 1)[type](value).style(styleMap[style]);
+          } else {
+            worksheet.cell(rowNumber, index + 1)[type](value);
+          }
         }
         headerValues = [...headerValues, ...[value]];
       });
