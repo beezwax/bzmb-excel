@@ -23,7 +23,7 @@ async function bzmbExcel(fastify, options) {
     { schema: createWorkbookSchema },
     async (req, res) => {
       try {
-        const workbookBase64 = createWorkbook(req.body);
+        const workbookBase64 = await createWorkbook(req.body);
         res
           .code(200)
           .send(workbookBase64);
