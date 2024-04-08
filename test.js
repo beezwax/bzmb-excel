@@ -61,7 +61,7 @@ const params = [
 
 (async () => {
   params.forEach(async ({sheets, styles, filename}) => {
-    const base64 = await createWorkbook(sheets, styles);
+    const base64 = await createWorkbook({sheets, styles});
     fs.writeFileSync(`test_output/${filename}`, base64, {encoding: "base64"});
   });
 })();
