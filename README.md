@@ -68,7 +68,7 @@ In a server-side FileMaker script run `bzBondRelay` script with parameters in th
         // Example array of arrays
         "data": [
           ["A", "B", 3],
-          [4, C, D]
+          [4, "C", "D"]
         ]
 
         // Example array of objects
@@ -92,7 +92,7 @@ In a server-side FileMaker script run `bzBondRelay` script with parameters in th
             "Column 2": "B",
             "Column 3": 3
           },
-          [4, C, D]
+          [4, "C", "D"]
         ]
 
         // Example array of objects and arrays with styling
@@ -100,9 +100,9 @@ In a server-side FileMaker script run `bzBondRelay` script with parameters in th
           {
             "Column 1": "A",
             "Column 2": "B",
-            "Column 3": {value: "3", style: "percent0dp"}
+            "Column 3": {"value": "3", "style": "percent0dp"}
           },
-          [{"value": 4}, {"value: "C", "style": "alignRight"}, {"Column 3": {"value": "D"}}]
+          [{"value": 4}, {"value": "C", "style": "alignRight"}, {"Column 3": {"value": "D"}}]
         ]
       }
     ],
@@ -110,7 +110,7 @@ In a server-side FileMaker script run `bzBondRelay` script with parameters in th
     // An object of styles that can be referenced by cells. See https://www.npmjs.com/package/excel4node#styles
     "styles": {
       "percent0dp": {
-        "number": "0%",
+        "number": "0%"
       },
       "alignRight": {
         "alignment": {
