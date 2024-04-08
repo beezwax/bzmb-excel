@@ -1,6 +1,8 @@
 const xl = require('excel4node');
 
-const createWorkbook = async (sheets, styles) => {
+const createWorkbook = async (payload) => {
+
+  const {sheets, styles} = payload
 
   const workbook = new xl.Workbook();
   const styleMap =
