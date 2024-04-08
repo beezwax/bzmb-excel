@@ -6,7 +6,7 @@ const args = process.argv.slice(2);
 
 const params = [
   {
-    sheets: [{
+    "sheets": [{
       "name": "Sheet1",
       "headers": ["Column1", "Column2", "Column3"],
       "data" : [
@@ -18,7 +18,7 @@ const params = [
       "options": "{}"
     }],
   
-    styles: {
+    "styles": {
       "percent0dp": {
         "numberFormat": "0%"
       },
@@ -29,10 +29,10 @@ const params = [
       }
     },
 
-    filename: "header_and_formatting.xlsx"
+    "filename": "header_and_formatting.xlsx"
   },
   {
-    sheets: [{
+    "sheets": [{
       "name": "Sheet1",
       "data" : [
         ["A", "B", "C"],
@@ -42,20 +42,20 @@ const params = [
       ]
     }],
 
-    filename: "no_header_missing_styles.xlsx"
+    "filename": "no_header_missing_styles.xlsx"
   },
   {
-    sheets: [{
+    "sheets": [{
       "name": "Sheet1",
       "data" : [
         ["A", "B", "C"],
         ["D", "E", "F"],
         ["1", 1, 2],
-        [{value: 1}, "A", 1]
+        [{"value": 1}, "A", 1]
       ]
     }],
 
-    filename: "no_header_no_formatting.xlsx"
+    "filename": "no_header_no_formatting.xlsx"
   }
 ];
 
