@@ -52,6 +52,9 @@ In a server-side FileMaker script run `bzBondRelay` script with parameters in th
         // Required. Sheet name
         "name": "string",
 
+        // Worksheet options. See https://www.npmjs.com/package/excel4node#worksheet
+        options: object
+
         // Array of column headers
         "headers": array,
         
@@ -104,7 +107,7 @@ In a server-side FileMaker script run `bzBondRelay` script with parameters in th
       }
     ],
 
-    // An object of styles that can be referenced by cells
+    // An object of styles that can be referenced by cells. See https://www.npmjs.com/package/excel4node#styles
     "styles": {
       "percent0dp": {
         "number": "0%",
