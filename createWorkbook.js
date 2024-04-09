@@ -12,7 +12,8 @@ const createWorkbook = async (payload) => {
         {}
       ) : {};
 
-  sheets.forEach(({headers, data, name, options}, index) => {
+  sheets.forEach(({headers, data, name, options, columnWidths}, index) => {
+    let columnContentLengths = {};
     let rowNumber = 1;
     let headerValues;
     const worksheet = workbook.addWorksheet(name, options);
@@ -32,10 +33,12 @@ const createWorkbook = async (payload) => {
         }
         const type = typeof value;
         if (!blank) {
+          column = index + 1;
+          columnContentLengths[column] = columnContentLengths[column] ? [...columnContentLengths[column], ...[value.toString().length]] : [value.toString().length];
           if (styleMap[style] !== undefined) {
-            worksheet.cell(rowNumber, index + 1)[type](value).style(styleMap[style]);
+            worksheet.cell(rowNumber, column)[type](value).style(styleMap[style]);
           } else {
-            worksheet.cell(rowNumber, index + 1)[type](value);
+            worksheet.cell(rowNumber, column)[type](value);
           }
         }
         headerValues = [...headerValues, ...[value]];
@@ -80,6 +83,7 @@ const createWorkbook = async (payload) => {
           } else {
             worksheet.cell(rowNumber, column)[type](value);
           }
+          columnContentLengths[column] = columnContentLengths[column] ? [...columnContentLengths[column], ...[value.toString().length]] : [value.toString().length];
         });
       } else if (rowType === "object") {
         Object.keys(row).forEach((cell, index) => {
@@ -102,10 +106,23 @@ const createWorkbook = async (payload) => {
           } else {
             worksheet.cell(rowNumber, column)[type](value);
           }
+          columnContentLengths[column] = columnContentLengths[column] ? [...columnContentLengths[column], ...[value.toString().length]] : [value.toString().length];
         });
       }
       rowNumber++;
     });
+
+    if(columnWidths?.length) {
+      columnWidths.forEach(({column, width, adjust = 0}) => {
+        let columnWidth;
+        if (typeof width === "number") {
+          columnWidth = width;
+        } else if (width === "autofit") {
+          columnWidth = Math.max(...columnContentLengths[column]);
+        }
+        worksheet.column(column).setWidth(columnWidth + adjust);
+      })
+    }
   });
 
   const base64 = (await workbook.writeToBuffer()).toString("base64").replaceAll("\n", "");
