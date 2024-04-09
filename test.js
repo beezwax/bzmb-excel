@@ -56,6 +56,33 @@ const params = [
     }],
 
     "filename": "no_header_no_formatting.xlsx"
+  },
+  {
+    "sheets": [{
+      "name": "Sheet1",
+      "headers": [{"value":"Long column name"}, {"value": "Column2"}, {"value":"Column3", "blank": true}],
+      "data" : [
+        ["A", "B", "C"],
+        {"Long column name": "A", "Column2": {"value": "B", "style": "rightAlign"}, "Column3": "C"},
+        {"Column2": "A", "Long column name": "B", "Column3": "C"},
+        ["A", {"value": 1, "style": "percent0dp"}, "C"]
+      ],
+      "columnWidths": [{"column": 1, "width": "autofit", "adjust": 0}],
+      "options": "{}"
+    }],
+  
+    "styles": {
+      "percent0dp": {
+        "numberFormat": "0%"
+      },
+      "rightAlign": {
+        "alignment": {
+          "horizontal": "right"
+        }
+      }
+    },
+
+    "filename": "autosize.xlsx"
   }
 ];
 
